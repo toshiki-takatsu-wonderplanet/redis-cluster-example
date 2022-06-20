@@ -13,7 +13,7 @@ fi
 
 php composer-setup.php --quiet
 RESULT=$?
-if $RESULT; then
+if [ $RESULT ]; then
     sudo mv composer.phar /usr/local/bin/composer
 fi
 rm composer-setup.php
