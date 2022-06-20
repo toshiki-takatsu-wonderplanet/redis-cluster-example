@@ -3,6 +3,8 @@ services:
     build:
       context: ./docker/php
       dockerfile: Dockerfile
+    init: true # downしてもすぐ終了してくれないので init 経由
+    stdin_open: true
     tty: true
     environment:
       XDEBUG_MODE: '${XDEBUG_MODE:-off}'

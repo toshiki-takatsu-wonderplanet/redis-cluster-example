@@ -34,6 +34,8 @@ ENV TZ=Asia/Tokyo \
   LANGUAGE=en_US:en \
   LC_ALL=en_US.UTF-8
 
+COPY ./docker-php-entrypoint /usr/local/bin/
+
 COPY --from=composer/composer /usr/bin/composer /usr/bin/composer
 
 COPY ./php.development.ini /etc/php.ini
@@ -45,3 +47,6 @@ RUN set -eux; \
   echo 'zend_extension=xdebug.so' > /etc/php.d/20-xdebug.ini
 
 WORKDIR /app
+
+ENTRYPOINT ["docker-php-entrypoint"]
+CMD ["php", "-a"]
