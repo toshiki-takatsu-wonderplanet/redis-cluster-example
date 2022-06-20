@@ -1,0 +1,14 @@
+{
+    "name": "root/app",
+    "type": "project",
+    "license": "proprietary",
+    "require": {
+        "php": "^7.4",
+        "predis/predis": "^1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Root\\App\\": "src/"
+        }
+    }
+}

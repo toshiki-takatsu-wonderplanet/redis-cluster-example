@@ -1,0 +1,32 @@
+services:
+  php:
+    build:
+      context: ./docker/php
+      dockerfile: Dockerfile
+    tty: true
+    volumes:
+      - type: bind
+        source: ./
+        target: /app
+  
+  redis:
+    image: redis:alpine
+    profiles:
+      - local
+    volumes:
+      - type: volume
+        source: redis-data
+        target: /data
+      - type: bind
+        source: ./docker/redis/conf
+        target: /usr/local/etc/redis
+    ports:
+      - target: 6379
+        published: ${PUBLISHED_REDIS_PORT:-6379}
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+
+
+volumes:
+  redis-data:
+
+
